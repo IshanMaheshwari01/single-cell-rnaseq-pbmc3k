@@ -48,7 +48,7 @@ population, just 13 cells, was cleanly separated.
 ### Bulk vs. single-cell RNA-seq
 
 **Bulk RNA-seq** measures the *average*
-gene expression of a whole sample — all cells are ground up and pooled, so you
+gene expression of a whole sample, all cells are ground up and pooled, so you
 get one expression profile per sample. It answers *"how does this tissue's
 expression change between conditions?"* but hides which **cell types** drive the
 change.
@@ -66,7 +66,7 @@ thousand of ~20,000 genes detected.
 [**PBMC 3k**](https://www.10xgenomics.com/datasets) is the canonical teaching
 dataset from 10x Genomics: **2,700 peripheral blood mononuclear cells** from a
 healthy human donor (Chromium platform, hg19). PBMCs are exactly the immune cells
-circulating in blood — T cells, B cells, NK cells, monocytes, dendritic cells —
+circulating in blood: T cells, B cells, NK cells, monocytes, dendritic cells, 
 which makes this dataset ideal: we know which cell types *should* appear, so we
 can verify the analysis recovers the right biology.
 
