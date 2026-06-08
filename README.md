@@ -21,7 +21,7 @@ cell types and the marker genes that define them.
 
 ---
 
-## TL;DR — what the pipeline found
+## TL;DR - what the pipeline found
 
 Starting from **2,700 cells × 32,738 genes**, after quality control (2,638 cells
 retained) the analysis identified **8 transcriptionally distinct immune
@@ -39,7 +39,7 @@ populations** — exactly the composition expected of human blood:
 | Megakaryocytes | 13 | `PPBP`, `PF4` |
 
 T cells dominate (as they do in real blood), and even the rare megakaryocyte
-population — just 13 cells — was cleanly separated.
+population, just 13 cells, was cleanly separated.
 
 ---
 
@@ -100,7 +100,7 @@ single-cell-rnaseq-pbmc3k/
 ## Quickstart
 
 > Tested on Ubuntu. Steps 1–2 install the toolkit; step 3 downloads the ~30 MB
-> dataset; step 4 runs the whole analysis (~40 s on a laptop).
+> dataset; step 4 runs the whole analysis (~50 s on a laptop).
 
 ```bash
 # 1. Clone
@@ -145,10 +145,10 @@ a function in [`src/pipeline.py`](src/pipeline.py) and a section of the
 A "cell" is really a droplet barcode, and not every barcode is a healthy single
 cell. Three metrics separate good cells from bad:
 
-- **genes per cell** — too few = empty droplet/debris; too many = a **doublet**
+- **genes per cell** - too few = empty droplet/debris; too many = a **doublet**
   (two cells in one droplet),
-- **total counts (UMIs)** — sequencing depth,
-- **% mitochondrial counts** — a high value flags a **stressed/dying cell** whose
+- **total counts (UMIs)** - sequencing depth,
+- **% mitochondrial counts** - a high value flags a **stressed/dying cell** whose
   membrane ruptured and leaked cytoplasmic mRNA, leaving mostly mitochondrial reads.
 
 We drop cells with `>2500` genes or `>5%` mitochondrial counts → **2,638 / 2,700
@@ -165,7 +165,7 @@ skew of expression values so a few high-count genes don't dominate.
 ### 3 · Highly variable genes
 
 Most genes are uninformative housekeeping genes. We keep the **1,838 highly
-variable genes** whose cell-to-cell variation exceeds technical noise — this
+variable genes** whose cell-to-cell variation exceeds technical noise, this
 denoises the data and speeds everything up.
 
 <p align="center"><img src="figures/05_highly_variable_genes.png" width="560" alt="Highly variable gene selection"></p>
@@ -182,7 +182,7 @@ below). The top 40 PCs feed the next step.
 
 A **k-nearest-neighbour graph** links each cell to its most similar cells in PCA
 space. **UMAP** embeds that graph in 2-D for visualisation, and the **Leiden**
-community-detection algorithm partitions it into clusters — **8 clusters** here.
+community-detection algorithm partitions it into clusters - **8 clusters** here.
 
 <p align="center"><img src="figures/07_umap_leiden_clusters.png" width="520" alt="UMAP coloured by Leiden cluster"></p>
 
@@ -213,10 +213,10 @@ The eight recovered populations and their abundances:
 
 Full outputs are in [`results/`](results/):
 
-- [`marker_genes.csv`](results/marker_genes.csv) — top 25 markers per cluster (log-fold-change, adjusted p-value, score)
-- [`cluster_celltype_mapping.csv`](results/cluster_celltype_mapping.csv) — the annotation scores for every cluster × cell type
-- [`celltype_counts.csv`](results/celltype_counts.csv) — cells per type
-- `pbmc3k_processed.h5ad` — the fully processed, annotated object (regenerate with `make run`)
+- [`marker_genes.csv`](results/marker_genes.csv) - top 25 markers per cluster (log-fold-change, adjusted p-value, score)
+- [`cluster_celltype_mapping.csv`](results/cluster_celltype_mapping.csv) - the annotation scores for every cluster × cell type
+- [`celltype_counts.csv`](results/celltype_counts.csv) - cells per type
+- `pbmc3k_processed.h5ad` - the fully processed, annotated object (regenerate with `make run`)
 
 ---
 
