@@ -7,7 +7,7 @@
 
 An end-to-end **single-cell RNA-sequencing (scRNA-seq)** analysis that takes the
 raw, unlabelled gene-by-cell count matrix of **2,700 peripheral blood mononuclear
-cells (PBMCs)** and — with no prior labels — recovers the major human immune
+cells (PBMCs)** and with no prior labels, recovers the major human immune
 cell types and the marker genes that define them.
 
 > Built with Python and [Scanpy](https://scanpy.readthedocs.io/). The full,
