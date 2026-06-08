@@ -47,7 +47,7 @@ population — just 13 cells — was cleanly separated.
 
 ### Bulk vs. single-cell RNA-seq
 
-**Bulk RNA-seq** (which you may already have analysed) measures the *average*
+**Bulk RNA-seq** measures the *average*
 gene expression of a whole sample — all cells are ground up and pooled, so you
 get one expression profile per sample. It answers *"how does this tissue's
 expression change between conditions?"* but hides which **cell types** drive the
