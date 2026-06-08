@@ -1,4 +1,4 @@
-# Single-Cell RNA-seq of 2,700 PBMCs — From Raw Counts to Cell Types
+# Single-Cell RNA-seq of 2,700 PBMCs - From Raw Counts to Cell Types
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Scanpy](https://img.shields.io/badge/Scanpy-1.12-1f77b4)](https://scanpy.readthedocs.io/)
