@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------------------
+# .gitignore
+#
+# What we DO commit (so the repo looks complete on GitHub before anyone runs
+# anything): the source code, the notebook with embedded figures, every PNG in
+# figures/, and the small CSV result tables in results/.
+#
+# What we DON'T commit: the raw 10x data (re-downloadable with
+# data/download_data.sh) and the large processed .h5ad object (regenerate with
+# `make run`). These are big and/or derived, so they stay out of version
+# control.
+# ---------------------------------------------------------------------------
+
+# --- Raw / downloaded data (regenerate with data/download_data.sh) ----------
+data/pbmc3k/
+data/*.tar.gz
+data/*.tgz
+
+# --- Large processed objects (regenerate with `make run`) -------------------
+results/*.h5ad
+
+# --- Scanpy / pipeline caches ----------------------------------------------
+cache/
+**/cache/
+*.h5ad.cache
+
+# --- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# --- Virtual environments --------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- Jupyter ---------------------------------------------------------------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# --- OS / editor cruft -----------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
