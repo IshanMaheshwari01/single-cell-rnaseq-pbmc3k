@@ -25,7 +25,7 @@ cell types and the marker genes that define them.
 
 Starting from **2,700 cells × 32,738 genes**, after quality control (2,638 cells
 retained) the analysis identified **8 transcriptionally distinct immune
-populations** — exactly the composition expected of human blood:
+populations** – exactly the composition expected of human blood:
 
 | Cell type | Cells | Key markers used |
 |---|---:|---|
@@ -248,7 +248,7 @@ This project covers the standard workflow; natural extensions include:
 - Wolf, Angerer & Theis (2018). *SCANPY: large-scale single-cell gene expression data analysis.* **Genome Biology** 19:15.
 - Traag, Waltman & van Eck (2019). *From Louvain to Leiden: guaranteeing well-connected communities.* **Scientific Reports** 9:5233.
 - McInnes, Healy & Melville (2018). *UMAP: Uniform Manifold Approximation and Projection.* arXiv:1802.03426.
-- 10x Genomics — PBMC 3k demonstration dataset.
+- 10x Genomics – PBMC 3k demonstration dataset.
 - The analysis design follows the canonical [Scanpy PBMC 3k clustering tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering-2017.html).
 
 ## License
