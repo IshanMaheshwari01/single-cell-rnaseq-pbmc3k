@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ===========================================================================
-# download_data.sh  —  fetch the 10x Genomics PBMC 3k dataset.
+# download_data.sh - fetch the 10x Genomics PBMC 3k dataset.
 #
 # This script reconstructs the standard Cell Ranger v2 layout that the pipeline
 # expects:

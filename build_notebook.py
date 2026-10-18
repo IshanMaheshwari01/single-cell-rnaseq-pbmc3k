@@ -26,7 +26,7 @@ def code(text):
 
 # --------------------------------------------------------------------------- #
 md(r"""
-# Single-Cell RNA-seq of 2,700 PBMCs — From Counts to Cell Types
+# Single-Cell RNA-seq of 2,700 PBMCs: From Counts to Cell Types
 
 **Author:** [IshanMaheshwari01](https://github.com/IshanMaheshwari01)
 **Tools:** Python · [Scanpy](https://scanpy.readthedocs.io) · AnnData · Leiden · UMAP
@@ -35,7 +35,7 @@ md(r"""
 
 ### What is single-cell RNA-seq?
 
-Bulk RNA-seq measures the *average* gene expression of a whole tissue — every
+Bulk RNA-seq measures the *average* gene expression of a whole tissue: every
 cell's transcripts are pooled together. **Single-cell RNA-seq (scRNA-seq)**
 instead measures gene expression in **each individual cell**, so we can discover
 the *cell types* that make up a sample and study them separately. The trade-off
@@ -46,8 +46,8 @@ few thousand transcripts detected out of ~20,000 genes.
 
 We analyse the classic **PBMC 3k** dataset from 10x Genomics: **2,700 peripheral
 blood mononuclear cells** from a healthy human donor, sequenced on the 10x
-Chromium platform. PBMCs are the immune cells in blood — T cells, B cells, NK
-cells, monocytes, dendritic cells — which makes this a perfect dataset for
+Chromium platform. PBMCs are the immune cells in blood: T cells, B cells, NK
+cells, monocytes, dendritic cells. This makes it a good dataset for
 learning, because we know which cell types to expect.
 
 ### The goal
@@ -55,13 +55,13 @@ learning, because we know which cell types to expect.
 Take the raw gene-by-cell count matrix and, with no prior labels, **recover the
 known immune cell types** and the marker genes that define them. The workflow:
 
-1. **Quality control** — remove empty droplets, doublets and dying cells
-2. **Normalisation** — make cells comparable despite different sequencing depth
-3. **Feature selection** — keep the most informative (highly variable) genes
-4. **Dimensionality reduction** — PCA, then UMAP for visualisation
-5. **Clustering** — group transcriptionally similar cells (Leiden algorithm)
-6. **Marker genes** — find what is differentially expressed in each cluster
-7. **Annotation** — assign a biological identity to each cluster
+1. **Quality control**: remove empty droplets, doublets and dying cells
+2. **Normalisation**: make cells comparable despite different sequencing depth
+3. **Feature selection**: keep the most informative (highly variable) genes
+4. **Dimensionality reduction**: PCA, then UMAP for visualisation
+5. **Clustering**: group transcriptionally similar cells (Leiden algorithm)
+6. **Marker genes**: find what is differentially expressed in each cluster
+7. **Annotation**: assign a biological identity to each cluster
 """)
 
 # --------------------------------------------------------------------------- #
@@ -69,7 +69,7 @@ md(r"""
 ## 0. Setup
 
 We import Scanpy and configure plotting. Setting a fixed `random_state`
-everywhere keeps the analysis reproducible — UMAP and clustering are stochastic
+everywhere keeps the analysis reproducible, because UMAP and clustering are stochastic
 and would otherwise look slightly different on every run.
 """)
 
@@ -103,7 +103,7 @@ md(r"""
 | `genes.tsv` | the gene names (rows) |
 | `barcodes.tsv` | the cell barcodes (columns) |
 
-Scanpy reads them into an **AnnData** object — the central data structure that
+Scanpy reads them into an **AnnData** object, the central data structure that
 holds the expression matrix (`.X`), per-cell metadata (`.obs`) and per-gene
 metadata (`.var`) side by side.
 """)
@@ -116,7 +116,7 @@ adata
 
 md(r"""
 `n_obs × n_vars = 2700 × 32738` means **2,700 cells** and **32,738 genes**. The
-matrix is ~97% zeros — most genes are simply not detected in most cells. That
+matrix is ~97% zeros. Most genes are simply not detected in most cells. That
 sparsity is normal and is exactly why the steps below are necessary.
 """)
 
@@ -127,11 +127,11 @@ md(r"""
 A "cell" here is really a **droplet barcode**, and not every barcode is a healthy
 single cell. We compute three diagnostics and use them to filter:
 
-- **`n_genes_by_counts`** — number of distinct genes detected in a cell.
+- **`n_genes_by_counts`**: number of distinct genes detected in a cell.
   *Too few* → empty droplet or debris. *Too many* → likely a **doublet** (two
   cells captured in one droplet).
-- **`total_counts`** — total transcripts (UMIs) per cell; reflects sequencing depth.
-- **`pct_counts_mt`** — % of counts from **mitochondrial** genes (symbols start
+- **`total_counts`**: total transcripts (UMIs) per cell; reflects sequencing depth.
+- **`pct_counts_mt`**: % of counts from **mitochondrial** genes (symbols start
   with `MT-`). When a cell is stressed or dying its membrane ruptures, cytoplasmic
   mRNA leaks out, and the mitochondrial fraction shoots up. High `pct_counts_mt`
   is the classic signature of a low-quality cell.
@@ -173,7 +173,7 @@ print(f"kept {adata.n_obs} / {n_before} cells after QC")
 md(r"""
 ## 3. Normalisation & log-transform
 
-A cell sequenced twice as deeply will show roughly twice the counts everywhere —
+A cell sequenced twice as deeply will show roughly twice the counts everywhere,
 that is a **technical** difference, not biology. We remove it in two steps:
 
 1. **Library-size normalisation** (`normalize_total`, target = 10,000): rescale
@@ -194,7 +194,7 @@ md(r"""
 
 Of the ~13,700 remaining genes, most are housekeeping genes that look the same
 in every cell and carry no information about cell identity. We keep only the
-**highly variable genes (HVGs)** — those whose variability across cells exceeds
+**highly variable genes (HVGs)**: those whose variability across cells exceeds
 what technical noise alone would produce. This denoises the data and speeds
 everything up.
 
@@ -244,8 +244,8 @@ Now we move from "cells in PCA space" to "groups of similar cells":
 
 - **kNN graph** (`neighbors`): connect each cell to its *k* most similar cells
   (here using the top 40 PCs). This graph captures the manifold the cells live on.
-- **UMAP** (`umap`): a 2-D embedding of that graph **for visualisation only** —
-  nearby points are similar cells. We do *not* cluster on the 2-D coordinates.
+- **UMAP** (`umap`): a 2-D embedding of that graph **for visualisation only**.
+  Nearby points are similar cells. We do *not* cluster on the 2-D coordinates.
 - **Leiden clustering** (`leiden`): a community-detection algorithm that finds
   densely connected groups in the graph. Each community is a candidate cell type.
 """)
@@ -262,7 +262,7 @@ sc.pl.umap(adata, color="leiden", legend_loc="on data", title="Leiden clusters")
 md(r"""
 Colouring the same UMAP by the QC metrics is a good sanity check: if a cluster
 were defined purely by sequencing depth or mitochondrial content (a technical
-artefact) rather than biology, it would light up here. It doesn't — good.
+artefact) rather than biology, it would light up here. It doesn't, which is good.
 """)
 
 code(r"""
@@ -271,7 +271,7 @@ sc.pl.umap(adata, color=["n_genes_by_counts", "total_counts", "pct_counts_mt"])
 
 # --------------------------------------------------------------------------- #
 md(r"""
-## 7. Marker genes — what defines each cluster?
+## 7. Marker genes: what defines each cluster?
 
 For every cluster we run a **one-vs-rest differential expression test**
 (Wilcoxon rank-sum) to find the genes most specifically up-regulated in that
@@ -330,9 +330,9 @@ md(r"""
 ## 9. Annotate the clusters
 
 We assign each cluster the cell type whose markers it expresses most strongly
-(scored by mean z-scored expression across clusters). Doing it data-driven —
-rather than hard-coding "cluster 3 = CD8 T" — keeps the analysis robust to the
-exact cluster numbering, which can shuffle between software versions.
+(scored by mean z-scored expression across clusters). Doing it from the data,
+rather than hard-coding "cluster 3 = CD8 T", keeps the labels correct even if the
+cluster numbering changes between software versions.
 """)
 
 code(r"""
@@ -366,7 +366,7 @@ adata.obs["cell_type"] = (
     adata.obs["leiden"].map(lambda c: full_names[mapping[c]]).astype("category")
 )
 sc.pl.umap(adata, color="cell_type", legend_loc="right margin",
-           title="PBMC 3k — annotated cell types")
+           title="PBMC 3k: annotated cell types")
 """)
 
 # --------------------------------------------------------------------------- #
@@ -402,10 +402,10 @@ md(r"""
 
 Starting from a raw, unlabelled 2,700 × 32,738 count matrix, the pipeline
 recovered **eight transcriptionally distinct immune populations** and assigned
-each a biological identity from canonical markers — **T cells (CD4 & CD8), NK
-cells, B cells, two monocyte subsets, dendritic cells and megakaryocytes** — the
+each a biological identity from known markers: **T cells (CD4 & CD8), NK
+cells, B cells, two monocyte subsets, dendritic cells and megakaryocytes**. This is the
 exact composition expected of human peripheral blood. T cells dominate (as in
-real blood), and even the rare megakaryocyte population (a few dozen cells) was
+real blood), and even the rare megakaryocyte population (just 13 cells) was
 cleanly separated.
 
 **What this demonstrates**

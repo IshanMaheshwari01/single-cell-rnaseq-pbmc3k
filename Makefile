@@ -1,5 +1,5 @@
 # ===========================================================================
-# Makefile  —  convenience wrapper around the project's common commands.
+# Makefile - convenience wrapper around the project's common commands.
 #
 # Usage:
 #     make setup      install Python dependencies (pip)
