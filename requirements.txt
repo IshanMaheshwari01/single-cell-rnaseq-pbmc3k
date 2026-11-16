@@ -1,14 +1,6 @@
-# ---------------------------------------------------------------------------
-# Python dependencies for the PBMC 3k single-cell RNA-seq project.
-#
-# Install with:
-#     pip install -r requirements.txt
-#
-# scanpy[leiden] pulls in the Leiden community-detection backend
-# (leidenalg + python-igraph) alongside the core single-cell toolkit.
-# Version floors below are conservative; the analysis was developed and
-# tested with the exact versions noted in the trailing comments.
-# ---------------------------------------------------------------------------
+# scanpy[leiden] pulls in leidenalg + python-igraph alongside the core
+# toolkit. Version floors are conservative; the exact versions I used
+# are in the trailing comments.
 
 scanpy[leiden]>=1.10      # core single-cell toolkit            (tested 1.12.1)
 anndata>=0.10             # annotated data matrix container      (tested 0.12.16)
