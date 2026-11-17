@@ -6,7 +6,7 @@
 
 This was my first single-cell project, done after my [bulk RNA-seq project](https://github.com/IshanMaheshwari01/RNA-seq-differential-expression-analysis). I took the raw count matrix for 2,700 blood cells (PBMCs) from 10x Genomics and, without using any labels, worked out which immune cell types are in there and which genes mark them. PBMC 3k is a well-known dataset from one healthy donor, so it's a good way to check the analysis gives the right answer before using the same steps on data where the answer isn't known.
 
-It follows the standard [Scanpy PBMC 3k tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering-2017.html), but I rewrote it as a small Python package with all settings in one config file, so the whole thing runs with one command. The notebook in [`notebooks/pbmc3k_analysis.ipynb`](notebooks/pbmc3k_analysis.ipynb) walks through each step with the plots, and there is a small interactive version of the results [here](https://ishanmaheshwari01.github.io/single-cell-rnaseq-pbmc3k/docs/).
+It follows the standard [Scanpy PBMC 3k tutorial](https://scanpy.readthedocs.io/en/stable/tutorials/basics/clustering-2017.html), but I rewrote it as a small Python package with all settings in one config file, so the whole thing runs with one command. The notebook in [`notebooks/pbmc3k_analysis.ipynb`](notebooks/pbmc3k_analysis.ipynb) walks through each step with the plots, and there is an interactive R Shiny version of the results (`app.R`, run with `Rscript -e 'shiny::runApp()'`).
 
 <p align="center">
   <img src="figures/11_umap_celltypes.png" width="640" alt="UMAP of PBMCs coloured by cell type">
